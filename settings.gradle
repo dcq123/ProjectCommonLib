@@ -1,1 +1,3 @@
-include ':app', ':fragmentnavigator'
+include ':app'
+include ':fragmentnavigator'
+include ':networklib'

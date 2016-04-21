@@ -8,18 +8,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="cn.qing.soft.projectcommonlib.MainActivity">
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="fragmentNavigator"
-        android:text="FragmentNavigator切换Fragment" />
+    tools:context="cn.qing.soft.projectcommonlib.network.NetworkActivity">
 
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="startNetwork"
-        android:text="开始进行网络测试" />
+        android:onClick="testNetwork"
+        android:text="测试网络" />
+
 </LinearLayout>

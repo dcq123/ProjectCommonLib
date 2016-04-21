@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import cn.qing.soft.projectcommonlib.fgnavigator.FragmentNavigatorActivity;
+import cn.qing.soft.projectcommonlib.network.NetworkActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,8 +17,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fragmentNavigator(View view) {
-
         startActivity(new Intent(this, FragmentNavigatorActivity.class));
-
     }
+
+    public void startNetwork(View view) {
+        startActivity(new Intent(this, NetworkActivity.class));
+    }
+
+
 }
