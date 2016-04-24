@@ -2,7 +2,7 @@ package cn.qing.soft.projectcommonlib;
 
 import android.app.Application;
 
-import cn.qing.soft.networklib.RetrofitServiceFactory;
+import cn.qing.soft.networklib.RetrofitServiceGenerator;
 
 /**
  * Created by dcq on 2016/4/20 0020.
@@ -15,6 +15,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        RetrofitServiceFactory.init(baseUrl, true);
+        RetrofitServiceGenerator.init(baseUrl, false);
     }
 }

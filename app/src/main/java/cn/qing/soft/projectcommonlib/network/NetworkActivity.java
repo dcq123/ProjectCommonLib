@@ -4,13 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import cn.qing.soft.networklib.RetrofitServiceFactory;
+import cn.qing.soft.networklib.NetworkResponse;
 import cn.qing.soft.projectcommonlib.R;
 import cn.qing.soft.projectcommonlib.network.model.PicModel;
-import cn.qing.soft.projectcommonlib.network.service.PicService;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import cn.qing.soft.projectcommonlib.network.model.StatisticsInfoModel;
+import cn.qing.soft.projectcommonlib.network.service.HomeServiceFactory;
+import cn.qing.soft.projectcommonlib.network.service.PicServiceFactory;
 
 public class NetworkActivity extends AppCompatActivity {
 
@@ -21,31 +20,44 @@ public class NetworkActivity extends AppCompatActivity {
     }
 
     public void testNetwork(View view) {
+        HomeServiceFactory.getInstance().getStatisticsInfo("ding", "chang", "qing", new NetworkResponse<StatisticsInfoModel>() {
+            @Override
+            public void onSuccess(StatisticsInfoModel statisticsInfoModel) {
+                System.out.println("请求成功：" + statisticsInfoModel.toString());
+            }
 
-        PicService service = RetrofitServiceFactory.createService(PicService.class);
-        service.getPicUrlList("ding", "qing")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<PicModel>() {
-                    @Override
-                    public void onCompleted() {
+            @Override
+            public void onFail(StatisticsInfoModel statisticsInfoModel, Throwable throwable) {
+                System.out.println("请求失败...");
+            }
 
-                        System.out.println("请求结束...");
-                    }
+            @Override
+            public boolean onFinish() {
+                return true;
+            }
+        });
+    }
 
-                    @Override
-                    public void onError(Throwable e) {
 
-                        System.out.println("请求出现异常...");
+    public void testNetwork2(View view) {
+        PicServiceFactory.getInstance().doGetPicUrlList("qing", "ding", new NetworkResponse<PicModel>() {
+            @Override
+            public void onFail(PicModel picModel, Throwable throwable) {
+                System.out.println("请求失败...");
+            }
 
-                    }
+            @Override
+            public boolean onFinish() {
+                System.out.println("请求结束");
+                return true;
+            }
 
-                    @Override
-                    public void onNext(PicModel picModel) {
+            @Override
+            public void onSuccess(PicModel picModel) {
 
-                        System.out.println("请求成功：" + picModel);
+                System.out.println("请求成功：" + picModel.toString());
+            }
+        });
 
-                    }
-                });
     }
 }

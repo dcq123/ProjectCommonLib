@@ -2,20 +2,13 @@ package cn.qing.soft.projectcommonlib.network.model;
 
 import java.util.List;
 
+import cn.qing.soft.networklib.BaseModel;
+
 /**
  * Created by dcq on 2016/4/20 0020.
  */
-public class PicModel {
+public class PicModel extends BaseModel {
 
-
-    /**
-     * Data : [{"IndexCode":"索引号","NativeTitle":"标题","NativeUrl":"http://www.qq.com","Url":"http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg"}]
-     * Message : 成功
-     * Status : Success
-     */
-
-    private String Message;
-    private String Status;
     /**
      * IndexCode : 索引号
      * NativeTitle : 标题
@@ -24,22 +17,6 @@ public class PicModel {
      */
 
     private List<DataEntity> Data;
-
-    public String getMessage() {
-        return Message;
-    }
-
-    public void setMessage(String Message) {
-        this.Message = Message;
-    }
-
-    public String getStatus() {
-        return Status;
-    }
-
-    public void setStatus(String Status) {
-        this.Status = Status;
-    }
 
     public List<DataEntity> getData() {
         return Data;
@@ -86,13 +63,23 @@ public class PicModel {
         public void setUrl(String Url) {
             this.Url = Url;
         }
+
+        @Override
+        public String toString() {
+            return "DataEntity{" +
+                    "IndexCode='" + IndexCode + '\'' +
+                    ", NativeTitle='" + NativeTitle + '\'' +
+                    ", NativeUrl='" + NativeUrl + '\'' +
+                    ", Url='" + Url + '\'' +
+                    '}';
+        }
     }
 
     @Override
     public String toString() {
         return "PicModel{" +
-                "Message='" + Message + '\'' +
-                ", Status='" + Status + '\'' +
+                "Message='" + getMessage() + '\'' +
+                ", Status='" + getStatus() + '\'' +
                 ", Data=" + Data +
                 '}';
     }

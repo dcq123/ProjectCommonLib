@@ -1,6 +1,7 @@
 package cn.qing.soft.networklib;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.Interceptor;
@@ -13,14 +14,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by dcq on 2016/4/20 0020.
- * <p>
+ * <p/>
  * 创建Retrofit服务的工厂类
  */
-public class RetrofitServiceFactory {
+public class RetrofitServiceGenerator {
 
-    private static OkHttpClient httpClient = new OkHttpClient();
     private static Retrofit.Builder builder = null;
     private static boolean isInit = false;
+
+    private static Map<Class, Object> serviceMap = new HashMap<>();
 
 
     public static void init(String baseUrl, boolean isUseRx) {
@@ -33,7 +35,7 @@ public class RetrofitServiceFactory {
 
     public static void checkIsInit() {
         if (!isInit) {
-            throw new IllegalStateException("RetrofitServiceFactory must init...");
+            throw new IllegalStateException("RetrofitServiceGenerator must init...");
         }
     }
 
@@ -62,9 +64,17 @@ public class RetrofitServiceFactory {
 
         checkIsInit();
 
+        if (serviceMap.containsKey(serviceClass)) {
+            System.out.println("从缓存中获取到service实例");
+            return (T) serviceMap.get(serviceClass);
+        }
+
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+
         if (headerMap != null && headerMap.size() > 0) {
-            httpClient.interceptors().clear();
-            httpClient.interceptors().add(new Interceptor() {
+            httpClientBuilder.interceptors().clear();
+
+            httpClientBuilder.interceptors().add(new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
 
@@ -84,8 +94,11 @@ public class RetrofitServiceFactory {
         }
 
 
-        Retrofit retrofit = builder.client(httpClient).build();
-        return retrofit.create(serviceClass);
+        Retrofit retrofit = builder.client(httpClientBuilder.build()).build();
+
+        T service = retrofit.create(serviceClass);
+        serviceMap.put(serviceClass, service);
+        return service;
     }
 
 }
