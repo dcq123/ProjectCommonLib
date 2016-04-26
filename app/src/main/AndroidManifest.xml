@@ -5,11 +5,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".App"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -18,9 +18,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fgnavigator.FragmentNavigatorActivity" />
-        <activity android:name=".fgnavigator.ExceptionActivity" />
-        <activity android:name=".network.NetworkActivity"></activity>
+        <activity
+            android:name=".fgnavigator.FragmentNavigatorActivity"
+            android:label="Fragment切换" />
+        <activity
+            android:name=".fgnavigator.ExceptionActivity"
+            android:label="异常Activity" />
+        <activity
+            android:name=".network.NetworkActivity"
+            android:label="Retrofit框架" />
+        <activity
+            android:name=".adapter.LoadMoreActivity"
+            android:label="RecyclerView Adapter" />
+        <activity
+            android:name=".adapter.LoadMoreListViewActivity"
+            android:label="ListView Adapter" />
+        <activity android:name=".adapter.MainAdapterActivity"></activity>
     </application>
 
 </manifest>

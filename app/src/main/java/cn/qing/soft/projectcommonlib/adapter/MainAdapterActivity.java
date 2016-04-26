@@ -1,4 +1,4 @@
-package cn.qing.soft.projectcommonlib;
+package cn.qing.soft.projectcommonlib.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,12 +17,10 @@ import butterknife.ButterKnife;
 import cn.qing.soft.adapter.ViewHolder;
 import cn.qing.soft.adapter.recyclerview.CommonRecyclerAdapter;
 import cn.qing.soft.adapter.recyclerview.OnItemClickListener;
-import cn.qing.soft.projectcommonlib.adapter.MainAdapterActivity;
-import cn.qing.soft.projectcommonlib.fgnavigator.FragmentNavigatorActivity;
+import cn.qing.soft.projectcommonlib.R;
 import cn.qing.soft.projectcommonlib.model.ClickModel;
-import cn.qing.soft.projectcommonlib.network.NetworkActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainAdapterActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -46,21 +44,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(ViewGroup parent, View view, ClickModel data, int position) {
 
-                startActivity(new Intent(MainActivity.this, data.getActivityClass()));
+                startActivity(new Intent(MainAdapterActivity.this, data.getActivityClass()));
             }
         });
     }
 
     private void initData() {
 
-        ClickModel fragmentNavi = new ClickModel(FragmentNavigatorActivity.class, "Fragment 导航", "FragmentNavigatorActivity");
-        datas.add(fragmentNavi);
+        ClickModel recyclerActivity = new ClickModel(LoadMoreActivity.class, "RecyclerView Adapter", "LoadMoreActivity");
+        datas.add(recyclerActivity);
 
-        ClickModel network = new ClickModel(NetworkActivity.class, "Retrofit网络框架", "NetworkActivity");
-        datas.add(network);
-
-        ClickModel adapterActivity = new ClickModel(MainAdapterActivity.class, "Base Adapter测试", "MainAdapterActivity");
-        datas.add(adapterActivity);
+        ClickModel listViewActivity = new ClickModel(LoadMoreListViewActivity.class, "ListView Adapter", "LoadMoreListViewActivity");
+        datas.add(listViewActivity);
 
 
     }
@@ -78,5 +73,4 @@ public class MainActivity extends AppCompatActivity {
             holder.setText(R.id.className, data.getClassName());
         }
     }
-
 }

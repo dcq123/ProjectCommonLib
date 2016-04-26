@@ -1,3 +1,9 @@
 include ':app'
+include ':adapter-lib'
 include ':fragmentnavigator'
 include ':networklib'
+
+
+project(':adapter-lib').projectDir = new File('ThirdLibs/adapter-lib')
+project(':fragmentnavigator').projectDir = new File('ThirdLibs/fragmentnavigator')
+project(':networklib').projectDir = new File('ThirdLibs/networklib')
