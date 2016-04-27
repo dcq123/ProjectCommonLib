@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/loadingStateRelativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/viewBackground"
+    android:clickable="true">
+
+
+    <com.hna.kotlin.view.progress.DilatingDotsProgressBar
+        android:id="@+id/loadingStateProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:color="@color/barColor"
+        android:radius="6dp"
+        app:dd_animationDuration="500"
+        app:dd_horizontalSpacing="6dp"
+        app:dd_numDots="3"
+        app:dd_scaleMultiplier="1.5" />
+
+    <TextView
+        android:id="@+id/loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loadingStateProgressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="加载中..."
+        android:textColor="@color/tipColor"
+        android:textSize="14dp" />
+
+</RelativeLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AppCommonLib</string>
+
+    <string name="progressActivityErrorContentPlaceholder">网络不给力哦，请刷新重试</string>
+    <string name="progressActivityErrorButton">重新加载</string>
+
+</resources>
