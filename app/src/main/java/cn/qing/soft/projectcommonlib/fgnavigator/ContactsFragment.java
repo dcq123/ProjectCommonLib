@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 
 import cn.qing.soft.fragmentnavigator.FragmentNavigator;
 import cn.qing.soft.fragmentnavigator.TabLayout;
+import cn.qing.soft.fragmentnavigator.animation.MoveAnimation;
 import cn.qing.soft.projectcommonlib.R;
 
 
@@ -75,5 +77,10 @@ public class ContactsFragment extends Fragment {
     public static Fragment newInstance(int position) {
         Fragment fragment = new ContactsFragment();
         return fragment;
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        return MoveAnimation.create(MoveAnimation.LEFT, enter, 500);
     }
 }

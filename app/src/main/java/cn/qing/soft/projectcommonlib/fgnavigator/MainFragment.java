@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
+import cn.qing.soft.fragmentnavigator.animation.MoveAnimation;
 import cn.qing.soft.projectcommonlib.R;
 
 /**
@@ -52,5 +54,10 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         TextView textView = (TextView) view.findViewById(R.id.tvText);
         textView.setText(mText);
+    }
+
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        return MoveAnimation.create(MoveAnimation.LEFT, enter, 500);
     }
 }

@@ -3,5 +3,6 @@
 
     <string name="progressActivityErrorContentPlaceholder">网络不给力哦，请刷新重试</string>
     <string name="progressActivityErrorButton">重新加载</string>
-
+    <string name="read_more">查看更多</string>
+    <string name="read_less">收起</string>
 </resources>

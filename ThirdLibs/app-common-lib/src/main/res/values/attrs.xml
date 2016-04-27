@@ -38,4 +38,13 @@
         <attr name="progressErrorStateBackgroundColor" format="color" />
     </declare-styleable>
 
+
+    <!-- 查看更多，收起的TextView -->
+    <declare-styleable name="ReadMoreTextView">
+        <attr name="trimExpandedText" format="string" />
+        <attr name="trimCollapsedText" format="string" />
+        <attr name="trimLength" format="integer" />
+        <attr name="showTrimExpandedText" format="boolean" />
+        <attr name="colorClickableText" format="color" />
+    </declare-styleable>
 </resources>

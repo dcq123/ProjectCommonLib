@@ -4,4 +4,6 @@
     <color name="viewBackground">#EDEDED</color>
     <color name="barColor">#3EAA5D</color>
     <color name="tipColor">#b8b8b8</color>
+
+    <color name="clickColor">#FF4081</color>
 </resources>
