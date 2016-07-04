@@ -8,6 +8,8 @@ import java.util.Map;
  */
 public abstract class BaseServiceFactory {
 
+    protected static final String baseUrl = "http://rap.taobao.org/mockjsdata/1671/";
+
     protected Map<String, String> headerMap = new HashMap<>();
 
     public BaseServiceFactory() {

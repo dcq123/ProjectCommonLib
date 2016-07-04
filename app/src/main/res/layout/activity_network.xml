@@ -24,4 +24,11 @@
         android:onClick="testNetwork2"
         android:text="测试网络2" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="updateHeader"
+        android:text="修改Header" />
+
+
 </LinearLayout>

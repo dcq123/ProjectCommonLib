@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion COMPILE_SDK_VERSION
         versionCode 1
         versionName "1.0"
     }
@@ -30,6 +30,7 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$retrofit_verson"
     compile "com.squareup.retrofit2:converter-gson:$retrofit_verson"
     compile "com.squareup.retrofit2:adapter-rxjava:$retrofit_verson"
+    compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
     compile "io.reactivex:rxandroid:1.1.0"
     compile "io.reactivex:rxjava:1.1.0"
 }

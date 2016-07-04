@@ -1,0 +1,115 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.neenbedankt.android-apt'
+
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    buildToolsVersion BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        applicationId "cn.soft.qing.apptemplate"
+        minSdkVersion 15
+        targetSdkVersion COMPILE_SDK_VERSION
+        versionCode 1
+        versionName "1.0"
+    }
+
+    //签名
+//    signingConfigs {
+//        debug {
+//            storeFile file("android.keystore")
+//            storePassword "hna.taurus"
+//            keyAlias "hna.taurus"
+//            keyPassword "hna.taurus"
+//        }
+//        relealse {
+//            storeFile file("android.keystore")
+//            storePassword "hna.taurus"
+//            keyAlias "hna.taurus"
+//            keyPassword "hna.taurus"
+//        }
+//    }
+    buildTypes {
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            //混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            //加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+//            signingConfig signingConfigs.debug
+        }
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            //加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+//            signingConfig signingConfigs.relealse
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    productFlavors {
+
+        pgyer {}
+
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = outputFile.name.replace(".apk", ".apk")
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
+        }
+    }
+}
+
+dependencies {
+    final DAGGER_VERSION = '2.5'
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+
+    // common lib
+    compile project(':fragmentnavigator')
+    compile project(':networklib')
+    compile project(':adapter-lib')
+    compile project(':app-common-lib')
+
+    // support lib
+    compile "com.android.support:appcompat-v7:$SUPPORT_VERSION"
+
+    // kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // dagger2
+    compile "com.google.dagger:dagger:$DAGGER_VERSION"
+    provided 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
+    apt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+
+
+    compile 'com.android.support:design:24.0.0'
+}
+repositories {
+    mavenCentral()
+}

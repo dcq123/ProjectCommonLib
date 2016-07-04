@@ -14,7 +14,5 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        RetrofitServiceGenerator.init(baseUrl, false);
     }
 }

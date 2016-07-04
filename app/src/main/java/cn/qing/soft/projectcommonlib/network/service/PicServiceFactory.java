@@ -7,14 +7,14 @@ import cn.qing.soft.projectcommonlib.network.model.PicModel;
 import retrofit2.Call;
 
 
-public class PicServiceFactory {
+public class PicServiceFactory extends BaseServiceFactory {
 
     private static PicServiceFactory instance;
 
     private PicService service;
 
     private PicServiceFactory() {
-        service = RetrofitServiceGenerator.createService(PicService.class);
+        service = RetrofitServiceGenerator.createService(baseUrl, PicService.class);
     }
 
     public static PicServiceFactory getInstance() {

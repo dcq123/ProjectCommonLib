@@ -16,7 +16,7 @@ public class HomeServiceFactory extends BaseServiceFactory {
 
     private HomeServiceFactory() {
         super();
-        service = RetrofitServiceGenerator.createService(HomeService.class, headerMap);
+        service = RetrofitServiceGenerator.createServiceByHeader(baseUrl, HomeService.class, headerMap);
     }
 
     public static HomeServiceFactory getInstance() {

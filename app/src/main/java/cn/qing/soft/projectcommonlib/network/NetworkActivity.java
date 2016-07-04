@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import cn.qing.soft.networklib.NetworkResponse;
+import cn.qing.soft.networklib.RetrofitServiceGenerator;
 import cn.qing.soft.projectcommonlib.R;
 import cn.qing.soft.projectcommonlib.network.model.PicModel;
 import cn.qing.soft.projectcommonlib.network.model.StatisticsInfoModel;
@@ -59,5 +63,8 @@ public class NetworkActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void updateHeader(View view) {
     }
 }

@@ -1,4 +1,4 @@
-include ':app'
+include ':app', ':apptemplate'
 include ':app-common-lib'
 include ':adapter-lib'
 include ':fragmentnavigator'

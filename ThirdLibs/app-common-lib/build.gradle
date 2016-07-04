@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion COMPILE_SDK_VERSION
         versionCode 1
         versionName "1.0"
     }
@@ -25,4 +25,5 @@ dependencies {
 
     //MD风格控件
     compile 'com.github.rey5137:material:1.2.2'
+    compile 'com.orhanobut:logger:1.15'
 }

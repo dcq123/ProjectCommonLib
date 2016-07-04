@@ -43,9 +43,13 @@ public abstract class LoadMoreRecyclerAdapter<T> extends CommonRecyclerAdapter<T
     // HeaderView、加载更多相关设置
     private boolean isFirst = true;
     private boolean isShowFooter = false;
+    // 检测是否有下一页
     private boolean hasNextPage = false;
     // true代表使用headerView
     private boolean hasHeaderView = false;
+    // 是否正在加载中
+    private boolean isLoadingMore = false;
+
 
     /**
      * 定义RecyclerView的多类型支持，使其支持包含HeaderView、正常的item、加载更多、没有更多等布局类型
@@ -92,7 +96,6 @@ public abstract class LoadMoreRecyclerAdapter<T> extends CommonRecyclerAdapter<T
 
             //用来标记是否正在向最后一个滑动，既是否向右滑动或向下滑动
             boolean isSlidingToLast = false;
-            boolean isLoadingMore = false;
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -118,12 +121,12 @@ public abstract class LoadMoreRecyclerAdapter<T> extends CommonRecyclerAdapter<T
 
                     if (isSlidingToLast && layoutManager.getChildCount() > 0 && lastVisibleItemPosition >= layoutManager.getItemCount() - 1) {
                         if (isLoadingMore) {
-                            Log.d(TAG, "RecyclerView is loading...");
+                            Log.d(TAG, "RecyclerView is loading,and currentPage = " + currentPage);
                         } else {
-                            Log.d(TAG, "RecyclerView prepare load next page ...");
+                            Log.d(TAG, "RecyclerView prepare load next page and currentPage = " + currentPage);
                             currentPage++;
                             loadNextPage(currentPage);
-                            isLoadingMore = false;
+                            isLoadingMore = true;
                         }
                     }
                 }
@@ -177,6 +180,7 @@ public abstract class LoadMoreRecyclerAdapter<T> extends CommonRecyclerAdapter<T
     public void setData(List<T> data, int totalCount) {
         mDataList.addAll(data);
         mTotalCount = totalCount;
+        isLoadingMore = false;
         hasNextPage = mDataList.size() < totalCount;
         notifyDataSetChanged();
         if (isFirst) {
@@ -244,8 +248,7 @@ public abstract class LoadMoreRecyclerAdapter<T> extends CommonRecyclerAdapter<T
         int itemType = typeSupport.getItemViewType(position, null);
         if (position == 0 && itemType == TYPE_HEADER_VIEW) {
             convertHeaderView(holder);
-        }
-        if (itemType == TYPE_NORMAL) {
+        } else if (itemType == TYPE_NORMAL) {
             holder.updatePosition(position);
             convert(holder, getPositionData(position));
         }
