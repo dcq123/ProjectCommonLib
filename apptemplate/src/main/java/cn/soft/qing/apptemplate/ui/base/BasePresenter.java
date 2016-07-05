@@ -1,6 +1,6 @@
 package cn.soft.qing.apptemplate.ui.base;
 
-public class BasePresenter<T extends MvpView> implements Presenter<T> {
+public abstract class BasePresenter<T extends MvpView> implements Presenter<T> {
 
     private T mMvpView;
 
